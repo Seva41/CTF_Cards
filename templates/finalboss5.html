@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Challenge 5</title>
+    <link rel="icon" href="/static/favicon.ico">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #61dafb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #61dafb;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.2em;
+            color: #c0c0c0;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: rgba(51, 51, 51, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature h2 {
+            margin-bottom: 10px;
+            color: #61dafb;
+        }
+
+        .feature p {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+
+        .cta {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta:hover {
+            background-color: #0056b3;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #61dafb;
+        }
+
+        .watermark a {
+            color: #007bff;
+        }
+
+        .watermark a:hover {
+            text-decoration: underline;
+        }
+
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            flex: 1 1 calc(40% - 20px); /* Ancho flexible: ocupa el 40% del contenedor */
+            max-width: 600px; /* Límite máximo de ancho */
+            background-color: #2c2f33;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+        }
+
+        .card h3 {
+            font-size: 2em;
+            color: #61dafb;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1.2em;
+            color: #c0c0c0;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- No hay ninguna bandera escondida en el HTML! :P -->
+    <div id="particles-js"></div>
+    <div class="container">
+        <h2>Desafío Final</h2>
+        <p>Este es el reto definitivo. ¡Buena suerte!<br></p>
+        <p>Input:</p> {{ out }}<br>
+        <p> <br></p>
+        <p>Key:</p> {{ key }}<br>
+        <p> <br></p>
+        <p>IV:</p> {{ IV }}<br>
+        <p> <br></p>
+        <p>Config:</p> {{ conf }}<br>
+        <p> <br></p>
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" name="answer" placeholder="Introduce tu respuesta">
+            <button type="submit">Enviar</button>
+        </form>
+        {% if success_message %}
+        <div class="result-message success">{{ success_message }}</div>
+        {% endif %}
+        {% if error_message %}
+        <div class="result-message error">{{ error_message }}</div>
+        {% endif %}
+        <a href="/" class="cta">Volver al Inicio</a>
+    </div>
+    <div class="watermark">
+        Made by Seva41<br>
+        <a href="https://sebadinator.com/" target="_blank">https://sebadinator.com/</a><br>
+        Seguridad en TI 2024/2
+    </div>
+
+    <script src="/static/js/particles.min.js" nonce="{{ g.nonce }}" defer></script>
+    <script src="/static/js/app.js" nonce="{{ g.nonce }}" defer></script>
+</body>
+</html>
